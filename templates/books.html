@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOK</title>
+</head>
+<body>
+<form method="GET">
+    {{ form.csrf_token() }}
+    {{ form.author.label }}{{ form.author }} <br>
+    {{ form.book.label }}{{ form.book }} <br>
+    {{ form.submit }} <br>
+    {# flash消息闪现 #}
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    {% endfor %}
+
+</form>
+
+<hr>
+<ul>
+    {% for author in authors %}
+        <li>{{ author.name }}</li>
+        {% for book in author.books %}
+            <li>{{ book.name }}</li>
+        {% endfor %}
+
+    {% endfor %}
+
+</ul>
+</body>
+</html>
